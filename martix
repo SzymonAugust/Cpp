@@ -1,0 +1,70 @@
+#include <iostream>
+
+using namespace std;
+
+class character {
+protected:
+    bool is_human;
+public:
+    character(bool a, bool b, bool c)
+    {
+        is_human = a;
+    }
+
+    void y_n(bool a)
+    {
+        if (a == 1)
+            cout << "Yes" << endl;
+        else
+            cout << "No" << endl;
+    }
+};
+
+class human : public character {
+protected:
+    bool is_in_Matrix;
+public:
+    human(bool a, bool b, bool c) : character(a,b,c)
+    {
+        is_in_Matrix = b;
+    }
+};
+
+class the_one : public human {
+    bool is_the_one;
+public:
+    the_one(bool a, bool b, bool c) : human(a,b,c)
+    {
+        is_the_one = c;
+    }
+
+    void text (string s)
+    {
+        cout << "Is " << s << " a human?" << endl;
+        y_n(is_human);
+        cout << "Is " << s << " in Matrix?" << endl;
+        y_n(is_in_Matrix);
+        cout << "Is " << s << " \"The One\"?" << endl;
+        y_n(is_the_one);
+    }
+};
+
+int main(void)
+{
+    the_one Agent_Smith(0,1,0);
+    the_one Morpheus(1,1,0);
+    the_one Neo(1,1,1);
+    the_one Machine(0,0,0);
+
+    cout << "Loading Matrix... Please wait." << endl << "Done!" << endl;
+
+    Agent_Smith.text("Agent Smith");
+    Morpheus.text("Morpheus");
+    Neo.text("Neo");
+    Machine.text("Machine");
+
+    cout << "Restarting Matrix... Please wait." << endl << "Running version 7.0 Oracle..." << endl;
+    cout << "Unexpected error(404)." << endl << "System shutdown. Architect needed." << endl;
+
+    return 0;
+}
