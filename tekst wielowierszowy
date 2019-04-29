@@ -1,0 +1,126 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+typedef vector<vector<string>> vvs;
+typedef vector<vector<string>>::iterator iterator_vvs;
+typedef vector<string> vs;
+typedef vector<string>::iterator iterator_vs;
+
+class text {
+private:
+    vvs whole_text;
+public:
+    void add_line(string, int);
+    void remove_line(int);
+    void print_all();
+    void search_words(string);
+};
+
+void text::print_all()
+{
+    iterator_vvs iter;
+    size_t i;
+
+    for (i = 0, iter = (*this).whole_text.begin(); iter != (*this).whole_text.end(); iter++,i++)
+    {
+        cout << "[" << i << "]";
+        for (auto x: (*iter))
+            cout << " " << x;
+        cout << endl;
+    }
+
+    cout << "Number of lines: " << (*this).whole_text.size() << endl << endl;
+}
+
+void text::add_line(string s, int number)
+{
+    iterator_vvs iter;
+    vs line;
+    string word;
+    int i;
+
+    for (iter = (*this).whole_text.begin(), i = 0; i < number; i++)
+        iter++;
+
+    i = 0;
+
+    for (auto x: s)
+    {
+        if (x == ' ')
+        {
+            line.push_back(word);
+            word = "";
+        }
+        else
+            word.push_back(x);
+    }
+
+    line.push_back(word);
+
+    (*this).whole_text.insert(iter,line);
+}
+
+void text::remove_line(int number)
+{
+    iterator_vvs iter;
+    int i;
+
+    for (i = 0, iter = (*this).whole_text.begin(); i < number; i++)
+        iter++;
+
+    (*this).whole_text.erase(iter);
+}
+
+void text::search_words(string key_word)
+{
+    iterator_vvs iter;
+    size_t i,j,size,counter;
+
+    key_word.pop_back();
+    size = key_word.size();
+
+    for (i = 0, iter = (*this).whole_text.begin(); iter != (*this).whole_text.end(); iter++,i++)
+    {
+        j = 0;
+
+        for (auto x: (*iter))
+        {
+            counter = 0;
+
+            for (auto ch: x)
+                if (tolower(ch) == tolower(key_word[counter]))
+                    counter++;
+                else
+                    break;
+
+            if (size == counter)
+                cout << x << " : line " << i+1 << ", word " << j+1 << endl;
+
+            j++;
+       }
+    }
+
+    cout << endl;
+}
+
+int main()
+{
+    text Shakespeare;
+
+    Shakespeare.add_line("Truth may seem but cannot be",0);
+    Shakespeare.add_line("Truth and beauty buried be",1);
+    Shakespeare.add_line("In my mind's eyes",2);
+    Shakespeare.print_all();
+
+    Shakespeare.remove_line(2);
+    Shakespeare.print_all();
+
+    Shakespeare.add_line("Beauty brag but 'tis not see",1);
+    Shakespeare.print_all();
+
+    Shakespeare.search_words("b*");
+
+    return 0;
+}
