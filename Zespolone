@@ -1,0 +1,141 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+class Complex_number {
+private:
+    double real;
+    double imaginary;
+    friend double module(const Complex_number &other);
+    friend double arg(const Complex_number &other);
+    friend double power(double i, int c);
+    friend ostream &operator<< (ostream &os, const Complex_number &other);
+    friend Complex_number power_c(const Complex_number &other, int n);
+    friend Complex_number operator+(const Complex_number &other1, const Complex_number &other2);
+    friend Complex_number operator-(const Complex_number &other1, const Complex_number &other2);
+    friend Complex_number operator*(double i, const Complex_number &other);
+    friend Complex_number operator*(const Complex_number &other, double i);
+    friend Complex_number operator*(const Complex_number &other1, const Complex_number &other2);
+public:
+    Complex_number(double x = 0, double y = 0) : real{x}, imaginary{y} {}
+};
+
+ostream &operator<<(ostream &os,const Complex_number&other)
+{
+    string c = "";
+    if (other.real != 0 and other.imaginary != 0)
+    {
+        if (other.imaginary >= 0)
+             c = "+";
+        os << other.real << c << other.imaginary << "i";
+    }
+
+    else if (other.real == 0 and other.imaginary != 0)
+    {
+        cout << other.imaginary << "i";
+    }
+
+    else if (other.real != 0 and other.imaginary == 0)
+    {
+        cout << other.real;
+    }
+
+    else
+    {
+        cout << 0;
+    }
+
+    return os;
+}
+
+Complex_number operator+(const Complex_number &other1, const Complex_number &other2)
+{
+    return Complex_number(other1.real + other2.real, other1.imaginary + other2.imaginary);
+}
+
+Complex_number operator-(const Complex_number &other1, const Complex_number &other2)
+{
+    return Complex_number(other1.real - other2.real, other1.imaginary - other2.imaginary);
+}
+
+double module(const Complex_number &other)
+{
+    return sqrt(other.real * other.real + other.imaginary * other.imaginary);
+}
+
+double arg(const Complex_number &other)
+{
+    if (other.real == 0 and other.imaginary == 0)
+        cout << "(0 has no arg) ";
+    return atan(other.imaginary/other.real);
+}
+
+double power(double i, int c)
+{
+    double il = 1;
+    int a;
+    for (a = 0; a < c; a++)
+        il *= i;
+    return il;
+}
+
+Complex_number power_c(const Complex_number &other, int n)
+{
+    return Complex_number(power(module(other),n)*cos(n*arg(other)), power(module(other),n)*sin(n*arg(other)));
+}
+
+Complex_number operator*(double i, const Complex_number &other)
+{
+    return Complex_number(i * other.real, i * other.imaginary);
+}
+
+Complex_number operator*(const Complex_number &other, double i)
+{
+    return Complex_number(i * other.real, i * other.imaginary);
+}
+
+Complex_number operator*(const Complex_number &other1, const Complex_number &other2)
+{
+    return Complex_number(other1.real * other2.real - other1.imaginary * other2.imaginary, other1.real * other2.imaginary + other2.real * other1. imaginary);
+}
+
+int main()
+{
+    Complex_number z1(4,3), z2(2,-3), z3(4), z4(0,-5), z5;
+
+    cout << "z1 = " << z1 << endl
+         << "z2 = " << z2 << endl
+         << "z3 = " << z3 << endl
+         << "z4 = " << z4 << endl
+         << "z5 = " << z5 << endl << endl;
+
+    cout << "|z1| = " << module(z1) << endl
+         << "|z2| = " << module(z2) << endl
+         << "|z3| = " << module(z3) << endl
+         << "|z4| = " << module(z4) << endl
+         << "|z5| = " << module(z5) << endl << endl;
+
+    cout << "arg(z1) = " << arg(z1) << endl
+         << "arg(z2) = " << arg(z2) << endl
+         << "arg(z3) = " << arg(z3) << endl
+         << "arg(z4) = " << arg(z4) << endl
+         << "arg(z5) = " << arg(z5) << endl << endl;
+
+    cout << "3*z1 = " << 3*z1 << endl
+         << "(-1)*z2 = "  << (-1)*z2 << endl
+         <<  "0.5*z3 = " << 0.5*z3 << endl
+         << "(-0.5)*z4 = " << (-0.5)*z4 << endl
+         << "100*z5 = " << 100*z5 << endl << endl;
+
+    cout << "z1 + z2 = " << z1 + z2 << endl
+         << "z3 - z4 = " << z3 - z4 << endl << endl;
+
+    cout << "z1 * z2 = " << z1 * z2 << endl
+         << "z3 * z4 = " << z3 * z4 << endl << endl;
+
+    cout << "(z1)^3 = " << power_c(z1,3) << endl
+         << "(z2)^5 = " << power_c(z2,5) << endl << endl;
+
+    return 0;
+}
