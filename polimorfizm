@@ -1,0 +1,107 @@
+#include <iostream>
+
+using namespace std;
+
+class character {
+protected:
+    int skill;
+    int intelligence;
+    int stamina;
+public:
+    virtual void introduce_yourself () = 0;
+    virtual void promotion(int) = 0;
+
+    void show_stats()
+    {
+        cout << "Skill: " << skill << endl << "Intelligence: " << intelligence << endl << "Stamina: " << stamina << endl;
+    }
+};
+
+class elf : public character {
+public:
+    void introduce_yourself()
+    {
+        cout << "I am elf!" << endl;
+    }
+
+    void promotion(int x)
+    {
+        skill += x;
+    }
+
+    elf(int x = 0, int y = 0, int z = 0)
+    {
+        skill = x;
+        intelligence = y;
+        stamina = z;
+    }
+};
+
+class wizard : public character {
+public:
+    void introduce_yourself()
+    {
+        cout << "I am wizard!" << endl;
+    }
+
+    void promotion(int x)
+    {
+        intelligence += x;
+    }
+
+    wizard(int x = 0, int y = 0, int z = 0)
+    {
+        skill = x;
+        intelligence = y;
+        stamina = z;
+    }
+};
+
+class knight : public character {
+public:
+    void introduce_yourself()
+    {
+        cout << "I am knight!" << endl;
+    }
+
+    void promotion(int x)
+    {
+        stamina += x;
+    }
+
+    knight(int x = 0, int y = 0, int z = 0)
+    {
+        skill = x;
+        intelligence = y;
+        stamina = z;
+    }
+};
+
+int main()
+{
+    int value = 10;
+    character *main_hero = new elf;
+
+    main_hero->introduce_yourself();
+    main_hero->promotion(value);
+    main_hero->show_stats();
+    cout << endl;
+
+    main_hero = new wizard;
+
+    main_hero->introduce_yourself();
+    main_hero->promotion(value);
+    main_hero->show_stats();
+    cout << endl;
+
+    main_hero = new knight;
+
+    main_hero->introduce_yourself();
+    main_hero->promotion(value);
+    main_hero->show_stats();
+    cout << endl;
+
+    delete main_hero;
+
+    return 0;
+}
