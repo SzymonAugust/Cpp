@@ -1,0 +1,8 @@
+LKS Lodz;Wisla Krakow;
+Lech Poznan;Arka Gdynia;
+Cracovia Krakow;Slask Wroclaw;
+Pogon Szczecin;Korona Kielce;
+Zaglebie Lubin;Legia Warszawa;
+Lechia Gdansk;Rakow Czestochowa;
+Wisla Plock;Piast Gliwice;
+Gornik Zabrze;Jagiellonia Bialystok;
