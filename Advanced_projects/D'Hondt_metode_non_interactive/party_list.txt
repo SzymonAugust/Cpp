@@ -1,0 +1,10 @@
+PSL;Polskie Stronnictwo Ludowe;party;
+PiS;Prawo i Sprawiedliwosc;party;
+SLD;Sojusz Lewicy Demokratycznej;party;
+KONF;Konfederacja Wolnosc i Niepodlegosc;party;
+KO;Koalicja Obywatelska;coalition;
+PRAW;Prawica;party;
+EMER;Akcja Zawiedzionych Emerytow i Rencistow;party;
+BEZP;Koalicja Bezpartyjni i Samorzadowcy;party;
+SKUT;Skuteczni Piotra Liroya-Marca;party;
+NIEM;Mniejszosc Niemiecka;minority;
