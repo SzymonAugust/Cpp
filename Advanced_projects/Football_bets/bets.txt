@@ -1,0 +1,8 @@
+LKS Lodz;2.4;Wisla Krakow;2.93;3.4;
+Lech Poznan;1.57;Arka Gdynia;5.72;4.15;
+Cracovia Krakow;2.25;Slask Wroclaw;3.28;3.3;
+Pogon Szczecin;1.62;Korona Kielce;5.4;4;
+Zaglebie Lubin;4.52;Legia Warszawa;1.75;3.85;
+Lechia Gdansk;1.82;Rakow Czestochowa;4.23;3.75;
+Wisla Plock;2.69;Piast Gliwice;2.65;3.3;
+Gornik Zabrze;2.67;Jagiellonia Bialystok;2.6;3.4;
